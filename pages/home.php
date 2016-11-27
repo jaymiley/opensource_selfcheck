@@ -1,10 +1,14 @@
 <div id="page_content">
 
+<? if ($require_pin==true){
+echo <<<EOD
 <script>
-$('#form').submit(function(){
+\$('#form').submit(function(){
   setTimeout(show_keypad_pin,500)
 });
 </script>
+EOD;
+} ?>
 
 <?php 
 //keypad include
