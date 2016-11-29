@@ -9,9 +9,11 @@
 *	functionality I would love to hear about them.
 *
 *	@author     	Eric Melton <ericmelton@gmail.com>
+*	@author		James Miley <jay@mercerlibrary.org>
 * 	@licence    	http://opensource.org/licenses/gpl-3.0.html
 * 	@copyright  	Eric Melton <ericmelton@gmail.com>
-*	@version    	1.2
+*	@copyright	James Miley <jay@mercerlibrary.org> 2016
+*	@version    	1.3
 */
 
 //========================== SIP2 =================================
