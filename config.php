@@ -9,9 +9,11 @@
 *	functionality I would love to hear about them.
 *
 *	@author     	Eric Melton <ericmelton@gmail.com>
-* 	@licence    	http://opensource.org/licenses/gpl-3.0.html
+*	@author		James Miley <jay@mercerlibrary.org>
+* 	@license    	http://opensource.org/licenses/gpl-3.0.html
 * 	@copyright  	Eric Melton <ericmelton@gmail.com>
-*	@version    	1.2
+*	@copyright	James Miley <jay@mercerlibrary.org> 2016
+*	@version    	1.3
 */
 
 //========================== SIP2 =================================
@@ -22,6 +24,7 @@ $sip_password='';
 
 
 //========================== Site Rules ==============================
+$require_pin=false; //require the user to enter a pin after scanning library card
 $sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
 $allow_manual_userid_entry=false;
 $show_fines=true;
@@ -80,6 +83,8 @@ $smtp_host="";
 $smtp_authentication=false;
 $smtp_username='';
 $smtp_pwd='';
+$smtp_port='';
+$smtp_secure=''; //ssl or tls
 
 //wording
 $library_name= "Public Library";
