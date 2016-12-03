@@ -22,7 +22,6 @@ $sip_password='';
 
 
 //========================== Site Rules ==============================
-$require_pin=false; //require users to input a pin after scanning library card
 $sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
 $allow_manual_userid_entry=false;
 $show_fines=true;
@@ -81,8 +80,6 @@ $smtp_host="";
 $smtp_authentication=false;
 $smtp_username='';
 $smtp_pwd='';
-$smtp_port='';
-$smtp_secure=''; //ssl or tls
 
 //wording
 $library_name= "Public Library";
