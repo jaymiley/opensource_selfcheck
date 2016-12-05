@@ -154,7 +154,7 @@ $(document).ready(function() {
 	
 	$("#email").click( //receipt email function
 		function(){
-		$("#print_item_list table tbody").append(receipt_footer);
+		$("#print_item_list table tbody");
 		$('#print,#no_print').css('visibility','hidden');
 		$(this).hide();
 		$("#email_thanks").show();
