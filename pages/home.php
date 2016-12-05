@@ -42,7 +42,7 @@ if ($allow_manual_userid_entry) {
 		    <? if ($require_pin==true) {
 			echo"<input name=\"pin\" type=\"text\" id=\"pin\" />";
 			}?> 
-		    <input type="submit" value="Submit" /><!-- jm -->
+		    <input type="submit" value="Submit" />
 		</form>
 	</div>
 	<!--  ============= end form for submitting items ============= -->
