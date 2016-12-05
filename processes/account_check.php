@@ -17,6 +17,7 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	
 	// Identify a patron
 	$mysip->patron = $_POST['barcode'];
+	$mysip->patronpwd = $_POST['pin'];
 	
 	// connect to SIP server
 	$connect = $mysip->connect();
@@ -50,7 +51,7 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	
 	//extract and format account information and assign to session variables
 	$_SESSION['patron_barcode']=$_POST['barcode'];
-	
+	$_SESSION['pin']=$_POST['pin'];
 	$patron_name='';
 	if (!empty($patron_info['variable']['AE'][0])){
 		$patron_name=$patron_info['variable']['AE'][0]; //patron's unformatted name

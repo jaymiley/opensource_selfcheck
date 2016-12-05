@@ -19,6 +19,9 @@
 
 <div id="keypad_container">
 	<table class="keypad">
+		<tr>	
+			<td colspan="3" class="keypad_title">Enter Card Number</td>
+		</tr>
 		<tr>
 			<td colspan="3" class="keypad_screen"></td>
 		</tr>
@@ -43,7 +46,42 @@
 			<td><div title="selfcheck_button"><span onclick="tb_remove();">cancel</span></div></td>
 		</tr>
 	</table>
-	<div onclick="$('#barcode').val($('#prompt .keypad_screen').text());$('#form').submit();" class="ok_button button" title="selfcheck_button" style="width:100%;">
+	<div onclick="$('#barcode').val($('#prompt .keypad_screen').text());tb_remove();setTimeout(show_keypad_pin,500);" class="ok_button button" title="selfcheck_button" style="width:100%;">
+		<h1>OK</h1>
+	</div>
+</div>
+
+
+<div id="keypad_container_pin">
+	<table class="keypad_pin">
+		<tr>
+			<td colspan="3" class="keypad_title">Enter Your PIN</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="keypad_screen_pin"></td>
+		</tr>
+		<tr>
+			<td><div data-val="1" title="selfcheck_button">1</div></td>
+			<td><div data-val="2" title="selfcheck_button">2</div></td>
+			<td><div data-val="3" title="selfcheck_button">3</div></td>
+		</tr>
+		<tr>
+			<td><div data-val="4" title="selfcheck_button">4</div></td>
+			<td><div data-val="5" title="selfcheck_button">5</div></td>
+			<td><div data-val="6" title="selfcheck_button">6</div></td>
+		</tr>
+		<tr>
+			<td><div data-val="7" title="selfcheck_button">7</div></td>
+			<td><div data-val="8" title="selfcheck_button">8</div></td>
+			<td><div data-val="9" title="selfcheck_button">9</div></td>
+		</tr>
+		<tr>
+			<td onclick="delete_keypad_pin_entry();"><div title="selfcheck_button"><span>delete</span></div></td>
+			<td><div data-val="0" title="selfcheck_button">0</div></td>
+			<td><div title="selfcheck_button"><span onclick="tb_remove();">cancel</span></div></td>
+		</tr>
+	</table>
+	<div onclick="$('#pin').val($('#prompt .keypad_screen_pin').text());$('#form').submit();" class="ok_button button" title="selfcheck_button" style="width:100%;">
 		<h1>OK</h1>
 	</div>
 </div>
@@ -66,10 +104,31 @@ function show_keypad(){
 	});
 }
 
+function show_keypad_pin(){
+//	tb_remove();
+	tb_show($('#keypad_container_pin').html());
+	var keypad_key=$('#prompt .keypad_pin div');
+	keypad_key.click(function (){
+		if (typeof $(this).data('val')!= 'undefined'){
+			var keypad_window=$('#prompt .keypad_screen_pin');
+			if (keypad_window.text().length<19){
+				keypad_window.append($(this).data('val')); //change this to display asterices
+			}
+		}
+	});
+}
+
 function delete_keypad_entry(){
 	var keypad_window_string=$('#prompt .keypad_screen').text();
 	var keypad_window_string_length=keypad_window_string.length;
 	keypad_window_new_string=keypad_window_string.substr(0,keypad_window_string_length-1);
 	$('#prompt .keypad_screen').text(keypad_window_new_string);
+}
+
+function delete_keypad_pin_entry(){
+	var keypad_window_string=$('#prompt .keypad_screen_pin').text();
+	var keypad_window_string_length=keypad_window_string.length;
+	keypad_window_new_string=keypad_window_string.substr(0,keypad_window_string_length-1);
+	$('#prompt .keypad_screen_pin').text(keypad_window_new_string);
 }	
 </script>
