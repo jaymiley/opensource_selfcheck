@@ -3,6 +3,7 @@ session_start();
 include_once('../includes/html2text.php'); 
 include_once('../includes/phpmailer/class.phpmailer.php');
 include_once('../config.php');
+include_once('../includes/phpmailer/PHPMailerAutoload.php');
 
 //make the mail text
 // The "source" HTML you want to convert.
@@ -19,6 +20,8 @@ $mail->IsSMTP(); // telling the class to use SMTP
 $mail->Host = $smtp_host; // SMTP server
 
 if ($smtp_authentication){
+	$mail->Port = $smtp_port; //Set the encryption system to use - ssl (deprecated) or tls
+	$mail->SMTPSecure = $smtp_secure; //Whether to use SMTP authentication
 	$mail->SMTPAuth = true; // turn on SMTP authentication
 	$mail->Username = $smtp_username; // SMTP username
 	$mail->Password = $smtp_pwd; // SMTP password
