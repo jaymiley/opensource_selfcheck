@@ -1,6 +1,6 @@
 <div id="page_content">
 
-<? if ($require_pin==true){
+<?php if ($require_pin==true){
 echo <<<EOD
 <script>
 \$('#form').submit(function(){
@@ -39,7 +39,7 @@ if ($allow_manual_userid_entry) {
 	<div style="position: absolute;left:-10000px;height:1px;overflow:hidden">
 		<form id="form" action="">
 		    <input name="barcode" type="text" id="barcode" />
-		    <? if ($require_pin==true) {
+		    <?php if ($require_pin==true) {
 			echo"<input name=\"pin\" type=\"text\" id=\"pin\" />";
 			}?> 
 		    <input type="submit" value="Submit" />
@@ -53,7 +53,7 @@ if ($allow_manual_userid_entry) {
 $(document).ready(function(){
 	$('#form').submit(function(){
 
-    <? if ($require_pin==true) {
+    <?php if ($require_pin==true) {
 	echo <<<EOD
     var a=document.forms["form"]["pin"].value;
     if (a==null || a=="")
@@ -67,10 +67,10 @@ EOD;
     
 		tb_remove();
 		$barcode=$('#barcode');
-		<? if ($require_pin==true){echo "\$pin=\$('#pin');";} ?>
+		<?php if ($require_pin==true){echo "\$pin=\$('#pin');";} ?>
 		$response=$("#response");
 		$response.html('<h2 style="color:#4d8b27"> Checking your account please wait. <img src="images/checking_account.gif" /></h2>');
-		$.post("processes/account_check.php", { barcode: $barcode.val()<? if ($require_pin==true){echo ", pin: \$pin.val()";} ?>},
+		$.post("processes/account_check.php", { barcode: $barcode.val()<?php if ($require_pin==true){echo ", pin: \$pin.val()";} ?>},
 			function(data){
 				setTimeout(function(){
 					if (data=='out of order'){ //does the response indicate a failed sip2 connection
@@ -90,7 +90,7 @@ EOD;
 		},'json'); //responses from process/account_check.php are expectd to be in json
 		$barcode.val('');
 		$barcode.focus();
-		<? if ($require_pin==true){
+		<?php if ($require_pin==true){
 		echo <<<EOD
 		\$pin.val('');
 		\$pin.focus();
