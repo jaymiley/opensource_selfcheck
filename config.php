@@ -13,23 +13,23 @@
 * 	@license    	http://opensource.org/licenses/gpl-3.0.html
 * 	@copyright  	Eric Melton <ericmelton@gmail.com>
 *	@copyright	James Miley <jay@mercerlibrary.org> 2016
-*	@version    	1.3
+*	@version    	1.4
 */
 
 //========================== SIP2 =================================
-$sip_hostname = '127.0.0.1';
-$sip_port = "1"; 
+$sip_hostname = '';
+$sip_port = ""; 
 $sip_login=''; 	//if your SIP2 server does not require a username and password leave these empty
 $sip_password='';
 
 
 //========================== Site Rules ==============================
-$require_pin=false; //require the user to enter a pin after scanning library card
+$require_pin=true; //require the user to enter a pin after scanning library card
 $sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
-$allow_manual_userid_entry=false;
+$allow_manual_userid_entry=true;
 $show_fines=true;
 $show_available_holds=true;
-$allow_email_receipts=false;
+$allow_email_receipts=true;
 $display_php_errors='on'; //off or on
 $hide_cursor_pointer=false; //hides default cursor pointer -should probably set to true on live self check
 
@@ -73,29 +73,26 @@ $currency_symbol='$';
 $due_date_format='n/j/Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
 $inactivity_timeout=40000; //time of inactivity before showing inactive prompt (in milliseconds)
 $account_check_timeout=15000; //time of inactivity after patron card scan before showing out of order page (in milliseconds)
-$patron_id_length=; //length of patron barcode or other id (leave empty if this varies)
-$online_catalog_url='http://publiclibrary.gov'; 	/*leave blank if you don't have one or if your catalog does
-							not allow renewals (this is for printing on the paper receipt and 
-							sending in the email receipt info about renewing online)*/
+$patron_id_length=14; //length of patron barcode or other id (leave empty if this varies)
 							
 //smtp (for emailing receipts)
 $smtp_host=""; 
-$smtp_authentication=false;
-$smtp_username='';
-$smtp_pwd='';
-$smtp_port='';
-$smtp_secure=''; //ssl or tls
+$smtp_authentication=true; //true or false
+$smtp_username="";
+$smtp_pwd="";
+$smtp_port=587;
+$smtp_secure=""; //ssl or tls
 
 //wording
-$library_name= "Public Library";
+$library_name= "Your Library";
 $module_name='Self-Checkout Station'; //shows on pages/home.php and pages/checkout.php
-$email_from_name=""; //library's email name
-$email_from_address=""; //library's email address
+$email_from_name="Your Library"; //library's email name
+$email_from_address="receipt@yourlibrary.org"; //library's email address
 $admin_emails=''; //comma delimted list of email addresses that should be notified should the self-check go out of order
-$email_subject='Public Library Self-Checkout Receipt'; //subject of email receipt
+$email_subject='Self-Checkout Receipt'; //subject of email receipt
 $intro_screen_text="Scan your library card's barcode to begin"; //shown on pages/home.php
 $welcome_screen_text="Scan an item's barcode to continue";	//shown on includes/welcome.php
-$welcome_screen_subtext="(most barcodes are inside items' front covers)";
+$welcome_screen_subtext="(most barcodes are on the outside back cover.)";
 $renewal_prompt_text='is already checked out to your account.<br />Would you like to try to renew it?';
 $out_of_order_head='Out of Service'; //shown on pages/out_of_order.php
 $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_order.php
@@ -103,10 +100,19 @@ $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_
 //====================== Paper & Email Receipts ==============
 /* add elements to or remove elements from the header & footer arrays below to manipulate that piece of the receipt.
 the elements will appear on separate lines of the receipt in the order that you place them below */ 
+
+//email receipt information
+$receipt_email_header_image=''; //relative to the processes folder
+$receipt_email_header[]='Do not reply to this e-mail.<br />';
+$receipt_email_header[]='Checkout Receipt<br />';
+$receipt_email_header[]=$library_name;
+$receipt_email_footer[]='Library website: www.YourLibrary.org';
+
+//print receipt information
 $receipt_header[]='Checkout Receipt';
 $receipt_header[]=$library_name;
-$receipt_footer[]='Renew your items online:';
-$receipt_footer[]=$online_catalog_url;
+$receipt_footer[]='Library website: www.YourLibrary.org';
+
 
 /*place the following in the order you want the elements to appear in the item list on the 
 paper and email receipts. remove (or comment out) any elements you don't want included.

@@ -29,12 +29,16 @@ if ($smtp_authentication){
 	$mail->SMTPAuth = false;
 }
 
+$mail->isHTML(true);
+
 $mail->FromName = $email_from_name;
 $mail->From = $email_from_address;//sender addy
 $mail->AddAddress($_SESSION['email']);//recip. email addy
 
 $mail->Subject = $email_subject;
-$mail->Body = implode("\n",$receipt_header).str_replace('Title:',"\n\nTitle:",$receipt_text)."\n\n".implode("\n",$receipt_footer);
+$mail->AddEmbeddedImage($receipt_email_header_image, 'logo_head', $receipt_email_header_image);
+
+$mail->Body ="<p><img src=\"cid:logo_head\" /><p>".implode("<p>",$receipt_email_header).str_replace(array("Title:","Item ID:","Call Number:","Date Due:"),array("<br /><br />Title:","<br />Item ID:","<br />Call Number:","<br />Date Due:"),$receipt_text)."<br /><br />"."<p>".implode("\n",$receipt_email_footer);
 $mail->WordWrap = 70;
 $mail->Send(); 
 ?>
