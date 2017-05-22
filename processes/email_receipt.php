@@ -38,7 +38,7 @@ $mail->AddAddress($_SESSION['email']);//recip. email addy
 $mail->Subject = $email_subject;
 $mail->AddEmbeddedImage($receipt_email_header_image, 'logo_head', $receipt_email_header_image);
 
-$mail->Body ="<p><img src=\"cid:logo_head\" /><p>".implode("<p>",$receipt_email_header).str_replace(array("Title:","Item ID:","Call Number:","Date Due:"),array("<br /><br />Title:","<br />Item ID:","<br />Call Number:","<br />Date Due:"),$receipt_text)."<br /><br />"."<p>".implode("\n",$receipt_footer);
+$mail->Body ="<p><img src=\"cid:logo_head\" /><p>".implode("<p>",$receipt_email_header).str_replace(array("Title:","Item ID:","Call Number:","Date Due:"),array("<br /><br />Title:","<br />Item ID:","<br />Call Number:","<br />Date Due:"),$receipt_text)."<br /><br />"."<p>".implode("\n",$receipt_email_footer);
 $mail->WordWrap = 70;
 $mail->Send(); 
 ?>
